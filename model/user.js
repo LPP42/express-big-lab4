@@ -5,6 +5,7 @@ let Users = {};
 
 Users.getUsers = async () => {
     let result = {};
+
     let dbConn = await dbConnPool.getConnection();
     const rows = await dbConn.query("SELECT userId,username,`first` FROM user ");
     dbConn.end();
@@ -22,7 +23,7 @@ module.exports = Users;
 Users.getUsers = async (userId) => {
     
     let result = {};
-    let dbConn = await db.getConnection();
+    let dbConn = await dbConnPool.getConnection();
     const rows = await dbConn.query("SELECT userId,username,`first` FROM user WHERE userId =?", [userId]);
     dbConn.end();
 
