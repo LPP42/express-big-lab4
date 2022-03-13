@@ -6,7 +6,7 @@ const userModel = require('../model/user');
 /* GET users listing. */
 router.get('/', async function(req, res) {
     let result = await userModel.getUsers();
-    res.render('users', { title: "Users", users: result });
+    res.render('users', { title: "All users", users: result });
 });
 router.get('/:userId', async function(req, res) {
 

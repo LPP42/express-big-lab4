@@ -1,11 +1,11 @@
 const dbConnPool = require('./db');
 
-let Users = {};
-//gets all users
-Users.getUsers = async() => {
+let Pages = {};
+//gets all pages
+Pages.getPages = async() => {
     let result = {};
     let dbConn = await dbConnPool.getConnection();
-    const rows = await dbConn.query("SELECT userId,username,`first` FROM user");
+    const rows = await dbConn.query("SELECT pageId,`name`,content FROM page");
     dbConn.end();
 
     if (rows.length > 0) {
@@ -18,15 +18,15 @@ Users.getUsers = async() => {
     return result;
 };
 
-//gets the specified user
-Users.getUser = async(userId) => {
+//gets the specified page
+Pages.getPage = async(pageId) => {
 
     let result = {};
-    if (isNaN(userId)) {
+    if (isNaN(pageId)) {
         result.status = false;
     } else {
         let dbConn = await dbConnPool.getConnection();
-        const rows = await dbConn.query("SELECT userId,username,`first` FROM user WHERE userId = ?", [userId]);
+        const rows = await dbConn.query("SELECT pageId,`name`,content FROM page WHERE pageId = ?", [pageId]);
         dbConn.end();
 
         if (rows.length > 0) {
@@ -39,4 +39,4 @@ Users.getUser = async(userId) => {
     return result;
 };
 
-module.exports = Users;
+module.exports = Pages;
