@@ -1,1 +1,10 @@
 <h2>menu</h2>
+
+
+<ul class="page-list">
+{{#each pages.data}}
+	<li>
+	<a href="http://localhost:3000/pages/{{pageId}}">{{name}}</a>
+		</li>
+{{/each}}
+</ul>
